@@ -1,7 +1,9 @@
 <template>
 	<view>
 		<button type="primary" @tap="tovue">去vue页</button>
+		<!-- #ifdef APP-PLUS -->
 		<button type="primary" @tap="tonvue" style="margin-top: 20rpx;">去nvue页</button>
+		<!-- #endif -->
 	</view>
 </template>
 
@@ -10,12 +12,6 @@
 		data() {
 			return {
 			}
-		},
-		onLoad() {
-			// 这里模拟接口请求,接口请求成功后将pageLoading改为false
-			setTimeout(() => {
-				// this.pageLoading = false;
-			}, 1000);
 		},
 		methods: {
 			tovue() {

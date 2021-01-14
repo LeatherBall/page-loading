@@ -5,8 +5,14 @@
 			<!-- #ifdef APP-NVUE -->
 			<text ref="text" class="loading-text" v-for="(item, index) in texts" :key="index" :style="{'font-size': fontSize + 'rpx'}">{{item}}</text>
 			<!-- #endif -->
-			<!-- #ifndef APP-NVUE -->
+			<!-- #ifdef APP-VUE -->
 			<text ref="text" class="loading-text" v-for="(item, index) in texts" :key="index" :style="{'animation-delay': 102.631578 * (index + 1) + 'ms', 'font-size': fontSize + 'rpx'}" v-html="item"></text>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN -->
+			<block v-for="(item, index) in texts" :key="index">
+				<text v-if="item == '&nbsp;'" :style="{width: spaceSize + 'rpx'}"></text>
+				<text ref="text" class="loading-text" :style="{'animation-delay': 102.631578 * (index + 1) + 'ms', 'font-size': fontSize + 'rpx'}" v-else>{{item}}</text>
+			</block>
 			<!-- #endif -->
 		</view>
 	</view>
@@ -18,7 +24,7 @@
 	 * @description 通常用于页面数据需要异步加载时，为避免出现数据加载完毕之前页面上出现空数据的尴尬情况，显示loading层作为页面载入过渡
 	 * @tutorial lsl
 	 * @property {Boolean} nav 是否预留出标题栏的高度,通常在自定义导航栏页面中需要设置为true （默认：false）
-	 * @property {Boolean} tab 是否预留出tabBar的高度 （默认：false）
+	 * @property {Boolean} tab 是否预留出tabBar的高度,通常在自定义tabBar的页面中需要设置为true （默认：false）
 	 * @property {Boolean} embed 是否为嵌入模式 （默认：false）
 	 * @property {String} text 加载中的文字 （默认：正在加载）
 	 * @property {String|Number} fontSize 加载中文字大小 （默认：58, 单位rpx）
@@ -77,6 +83,9 @@
 			},
 			bottomSize() {
 				return this.tab ? '50px' : '0';
+			},
+			spaceSize() {
+				return this.fontSize / 2;
 			}
 		},
 		created() {
