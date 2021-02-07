@@ -1,13 +1,13 @@
 <template>
 	<view>
-		<ls-loading :nav="false" text="now loading..." v-if="pageLoading"></ls-loading>
+		<ls-loading text="now loading..." :animation="animation" v-if="pageLoading"></ls-loading>
 		<!-- 下面照常写你的页面布局 -->
-		<text>我是vue页面</text>
+		<text>页面加载完毕，我是vue页面</text>
 	</view>
 </template>
 
 <script>
-	import lsLoading from '@/components/ls-loading/ls-loading.vue';
+	import lsLoading from '@/uni_modules/ls-loading/components/ls-loading/ls-loading.vue';
 	export default {
 		components: {
 			lsLoading
@@ -15,13 +15,15 @@
 		data() {
 			return {
 				pageLoading: true,
+				animation: ''
 			}
 		},
-		onLoad() {
+		onLoad(arg) {
+			this.animation = arg.animation;
 			// 这里模拟接口请求,接口请求成功后将pageLoading改为false
 			setTimeout(() => {
 				this.pageLoading = false;
-			}, 5000);
+			}, 8000);
 		}
 	}
 </script>

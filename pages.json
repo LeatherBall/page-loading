@@ -7,7 +7,7 @@
 			}
 		} 
         ,{
-            "path" : "pages/index/index2",
+            "path" : "pages/index/demo-nvue",
             "style" :                                                                                    
             {
                "navigationBarTitleText": "NVUE页面"
@@ -15,7 +15,7 @@
             
         }
         ,{
-            "path" : "pages/index/index3",
+            "path" : "pages/index/demo-vue",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "VUE页面"
